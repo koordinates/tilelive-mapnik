@@ -1,8 +1,30 @@
 # tilelive-mapnik changelog
 
+## 0.6.4
+
+* Allow users to configure strict mode via URI (#74) (@strk)
+* Loosen mapnik requirement to bet between 0.7.25 and 1.2.x (@strk)
+
+## 0.6.3
+
+* key solidCache on image format (#51)
+* Fix tests to work with Mapnik 2.3.x (https://github.com/mapnik/mapnik/issues/2028)
+
+## 0.6.2
+
+* Ensure correct detection of mime type for new mapnik image formats that separate name from options using `:`.
+
+## 0.6.1
+
+* Fixed package.json `engines` declaration
+* Upgraded to node-mapnik 1.2.0
+
 ## 0.6.0
 
 * Upgraded to node-mapnik-1.1.2 (#68)
+* Moved cache of solid tiles to tilesource (rather than global) #64
+* Ensured `scale` value passed to Mapnik is a number
+* Exposed mapnik binding as MapnikSource.mapnik
 
 ## 0.5.0
 
