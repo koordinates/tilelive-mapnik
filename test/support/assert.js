@@ -21,11 +21,15 @@ assert.imageEqualsFile = function(buffer, file_b, callback) {
 
     exec('compare -metric PSNR "' + file_a + '" "' +
             file_b + '" "' + diff + '"', function(err, stdout, stderr) {
-        fs.unlinkSync(file_a);
-        fs.unlinkSync(diff);
+
+        if (err) {
+            callback(err);
+        }
 
         stderr = stderr.trim();
         if (stderr === 'inf') {
+            fs.unlinkSync(file_a);
+            fs.unlinkSync(diff);
             callback(null);
         } else {
             var similarity = parseFloat(stderr);
@@ -35,6 +39,8 @@ assert.imageEqualsFile = function(buffer, file_b, callback) {
                 err.similarity = similarity;
                 callback(err);
             } else {
+                fs.unlinkSync(file_a);
+                fs.unlinkSync(diff);
                 callback(null);
             }
         }
