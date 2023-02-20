@@ -29,7 +29,7 @@
   "dependencies": {
     "step": "~0.0.5",
     "generic-pool": "~2.4.0",
-    "mapnik": "^3.7.2",
+    "@koordinates/mapnik": "^3.99.4",
     "mime": "^2.4.0"
   },
   "devDependencies": {
