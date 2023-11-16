@@ -28,8 +28,8 @@
   ],
   "dependencies": {
     "step": "~0.0.5",
-    "generic-pool": "~2.4.0",
-    "@koordinates/mapnik": "^3.99.4",
+    "generic-pool": "~3.6.1",
+    "@koordinates/mapnik": "^4.99.32",
     "mime": "^2.4.0"
   },
   "devDependencies": {
