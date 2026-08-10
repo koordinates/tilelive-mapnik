@@ -76,6 +76,26 @@ describe('Handling Errors ', function() {
         });
     });
 
+    it('malformed palette spec', function(done) {
+        new mapnik_backend('mapnik://./test/data/test.xml?palette=nonsense', function(err, source) {
+            try {
+                assert.ok(err);
+                assert.ok(err.message.search('bad palette colour') !== -1, err.message);
+                done();
+            } catch (err) { done(err); }
+        });
+    });
+
+    it('empty palette spec', function(done) {
+        new mapnik_backend('mapnik://./test/data/test.xml?palette=', function(err, source) {
+            try {
+                assert.ok(err);
+                assert.ok(err.message.search('non-empty string') !== -1, err.message);
+                done();
+            } catch (err) { done(err); }
+        });
+    });
+
     it('invalid image format', function(done) {
         new mapnik_backend('mapnik://./test/data/test.xml', function(err, source) {
             if (err) throw err;
