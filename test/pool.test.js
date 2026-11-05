@@ -61,4 +61,24 @@ describe('Pool', function() {
             });
         });
     });
+
+    it('returns an error instead of hanging when the map constructor throws', function(done) {
+        this.timeout(5000);
+        var Map = mapnik.Map;
+        var constructed = 0;
+        mapnik.Map = function() {
+            constructed++;
+            throw new Error('bad map size');
+        };
+        new mapnik_backend({
+            pathname: path.join(__dirname, 'data', 'world.xml'),
+            mml: {},
+            query: { internal_cache: false }
+        }, function(err) {
+            mapnik.Map = Map;
+            assert.ok(err && /bad map size/.test(err.message), 'expected the constructor error');
+            assert.equal(constructed, 1, 'failed map create was retried');
+            done();
+        });
+    });
 });
